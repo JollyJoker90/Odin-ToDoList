@@ -1,26 +1,34 @@
 import "./style.css";
+import { Task, Project } from "./funcs";
+import { UpdateScreen } from "./gui";
 
-class ToDo {
-  constructor(title, description, dueDate, priority) {
-    this.title = title;
-    this.description = description;
-    this.dueDate = dueDate;
-    this.priority = priority;
-  }
-}
+const AppManager = () => {
+  const projects = [];
+  const defaultProject = Project("default");
+  defaultProject.setActive();
+  // for testing
+  defaultProject.addTask(Task("test", "Desc. This is a desc", "1.1.10", "low"));
+  defaultProject.addTask(
+    Task("test2", "Desc. This is a desc", "1.1.10", "mid")
+  );
+  defaultProject.addTask(
+    Task("test3", "Desc. This is a desc", "1.1.10", "high")
+  );
+  // end testing
+  projects.push(defaultProject);
+  return { projects };
+};
 
-class Test {
-  constructor(test) {
-    this.test = test;
-  }
-}
+const ScreenManager = () => {
+  const app = AppManager();
+  UpdateScreen(app.projects);
 
-function Help(name) {
-  return { name };
-}
+  return { app };
+};
 
-window.ToDo = ToDo;
+const test = ScreenManager();
+// screen.renderContent();
 
-console.log(new ToDo("help", "est2", "1.1", "low"));
+// test.app.projects[0].tasks.addTask("test");
 
-// export { ToDo };
+window.test = test;
