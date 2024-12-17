@@ -1,6 +1,8 @@
 :root {
   --spacer: 12px;
   --spacerX2: calc(var(--spacer) * 2);
+
+  --primary:var(--primary)
 }
 
 @font-face {
@@ -42,6 +44,18 @@
   background: url(res/check-circle-outline.svg);
 }
 
+.modal {
+  position: absolute;
+  background-color: white;
+  /* width: 20vw; */
+  /* height: 10vh; */
+  padding: var(--spacer);
+  border-radius: var(--spacer);
+  hr {
+    border: 1px solid grey;
+  }
+}
+
 main {
   width: 100vw;
   height: 100vh;
@@ -80,4 +94,8 @@ main {
   display: flex;
   align-items: center;
   gap: var(--spacer);
+}
+
+.hidden {
+  display: none;
 }

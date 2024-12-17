@@ -1,6 +1,6 @@
 import "./style.css";
 import { Task, Project } from "./funcs";
-import { UpdateScreen } from "./gui";
+import { UpdateScreen, Modal } from "./gui";
 
 const AppManager = () => {
   const projects = [];
@@ -21,6 +21,12 @@ const AppManager = () => {
 const ScreenManager = () => {
   const app = AppManager();
   UpdateScreen(app.projects);
+
+  const handleAddTask = (e) => {
+    Modal(e);
+  };
+
+  document.querySelector(".add-task").addEventListener("click", handleAddTask);
 
   return { app };
 };

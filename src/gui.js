@@ -1,13 +1,9 @@
-// import EmptyCircle from "./res/checkbox-blank-circle-outline.svg";
-
 const UpdateScreen = (projects) => {
   // updating content area
   document.querySelector("#content").innerHTML = "";
   document.querySelector("#content").append(RenderProject(projects[0]));
   // updating sidebar
   RenderSidebar(projects);
-  const test = document.createElement("div");
-  document.querySelector("#sidebar").append(test);
 };
 
 const RenderProject = (project) => {
@@ -36,21 +32,6 @@ const TaskCardSimple = ({ title, id }) => {
   return card;
 };
 const TaskCardExpanded = () => {};
-// const BuildTaskCard = ({ title, description, dueDate, priority, id }) => {
-//   const card = document.createElement("button");
-//   card.classList.add("card", `id-${id}`);
-//   const cardTitle = document.createElement("div");
-//   cardTitle.textContent = title;
-//   const cardDescription = document.createElement("div");
-//   cardDescription.textContent = description;
-//   const cardDueDate = document.createElement("div");
-//   cardDueDate.textContent = dueDate;
-//   const cardPriority = document.createElement("div");
-//   cardPriority.textContent = priority;
-//   //   card.textContent = "task.name";
-//   card.append(cardTitle, cardDescription, cardDueDate, cardPriority);
-//   return card;
-// };
 
 const RenderSidebar = (projects) => {
   const header = document.createElement("h1");
@@ -78,4 +59,24 @@ const RenderSidebar = (projects) => {
     .append(header, operatorsContainer, projectsContainer);
 };
 
-export { UpdateScreen };
+const Modal = ({ target, pageX, pageY }) => {
+  target.disabled = true;
+  const modalContainer = document.createElement("div");
+  modalContainer.classList.add("modal");
+  modalContainer.style.left = pageX + 24 + "px";
+  modalContainer.style.top = pageY + 24 + "px";
+  const modalSubmit = document.createElement("button");
+  modalSubmit.classList.add("btn");
+  modalSubmit.textContent = "Save";
+
+  const modalInput = document.createElement("input");
+  modalInput.type = "text";
+
+  const modalSeperator = document.createElement("hr");
+  modalContainer.append(modalInput, modalSeperator, modalSubmit);
+  document.querySelector("body").append(modalContainer);
+
+  // console.log(target, pageX, pageY);
+};
+
+export { UpdateScreen, Modal };
