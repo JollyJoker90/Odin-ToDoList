@@ -4,8 +4,7 @@ import { UpdateScreen } from "./gui";
 
 const AppManager = () => {
   const projects = [];
-  const defaultProject = Project("default");
-  defaultProject.setActive();
+  const defaultProject = Project("Me");
   // for testing
   defaultProject.addTask(Task("test", "Desc. This is a desc", "1.1.10", "low"));
   defaultProject.addTask(
