@@ -47,34 +47,34 @@
 .modal {
   position: absolute;
   background-color: white;
-  min-width: 30vw;
+  min-width: 10vw;
+  padding: var(--spacer);
   display: flex;
   flex-direction: column;
-  /* height: 10vh; */
-  padding: var(--spacer);
+  gap: var(--spacer);
   border-radius: var(--spacer);
   box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.123);
-  input {
-    height: 24px;
+  /* span {
+    min-height: 24px;
+    line-height: 20px;
     margin-bottom: var(--spacer);
-  }
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 4px;
+    display: block;
+    resize: both;
+    max-width: 20vw;
+    overflow: hidden;
+  } */
 
-  hr {
-    border: 1px solid grey;
-    margin-top: var(--spacerX2);
-    margin-bottom: var(--spacer);
-  }
   .modal-bottom-container {
     display: flex;
+    justify-content: space-between;
     gap: var(--spacer);
   }
   select {
-    flex: 1;
+    width: 33%;
   }
-
-  /* .save-task {
-    align-self: flex-end;
-  } */
 }
 
 main {
@@ -84,34 +84,26 @@ main {
   grid-template-columns: 1fr 4fr;
 }
 
-#sidebar {
-  background-color: #ffca58;
+.container {
   padding: var(--spacer);
-
-  .sidebar-heading {
-    margin-bottom: var(--spacerX2);
-  }
-
-  .container {
-    margin: var(--spacerX2) 0;
-  }
-  /* box-shadow: -10px 0px 25px 10px #0000004c; */
+  display: flex;
 }
 
+.container > h1 {
+  margin-bottom: var(--spacer);
+}
+
+.sidebar-container,
 .project-container {
-  padding: var(--spacer);
-  /* height: 100vh; */
-  display: flex;
   flex-direction: column;
   align-items: start;
-  > h1 {
-    margin-bottom: var(--spacer);
-  }
+}
+
+#sidebar {
+  background-color: #ffca58;
 }
 
 .card {
-  /* border: 4px solid orchid; */
-  /* margin: 12px; */
   padding: 8px;
   background-color: white;
   border: none;

@@ -46,8 +46,11 @@ const RenderSidebar = (projects) => {
   const addTaskBtn = document.createElement("button");
   addTaskBtn.classList.add("btn", "add-task");
   addTaskBtn.textContent = "Add task";
+  const addProjectBtn = document.createElement("button");
+  addProjectBtn.classList.add("btn", "add-project");
+  addProjectBtn.textContent = "Add project";
 
-  operatorsContainer.append(addTaskBtn);
+  operatorsContainer.append(addTaskBtn, addProjectBtn);
   const projectsContainer = document.createElement("div");
   projectsContainer.classList.add("container", "sidebar-projects");
   projects.forEach((project) => {
@@ -62,43 +65,49 @@ const RenderSidebar = (projects) => {
     .append(header, operatorsContainer, projectsContainer);
 };
 
-const Modal = ({ target, pageX, pageY }) => {
+const Modal = ({ target, pageX, pageY }, type) => {
+  console.log(type);
   target.disabled = true;
   const categories = ["Self", "other"];
   const modalContainer = document.createElement("div");
-  modalContainer.id = "taskModal";
+  modalContainer.id = type === "task" ? "taskModal" : "projectModal";
   modalContainer.classList.add("modal");
   modalContainer.style.left = pageX + 24 + "px";
   modalContainer.style.top = pageY + 24 + "px";
 
-  const modalInput = document.createElement("input");
-  modalInput.type = "text";
-
-  const selectDiv = document.createElement("div");
+  const modalInput = document.createElement("span");
+  modalInput.contentEditable = "true";
 
   const modalCategorySelect = document.createElement("select");
-  categories.forEach((category) => {
-    const option = document.createElement("option");
-    option.textContent = category;
-    modalCategorySelect.append(option);
-  });
+  if (type === "task") {
+    categories.forEach((category) => {
+      const option = document.createElement("option");
+      option.textContent = category;
+      modalCategorySelect.append(option);
+    });
+  }
 
   const modalSubmit = document.createElement("button");
-  modalSubmit.classList.add("btn", "save-task");
+  modalSubmit.classList.add("btn", "save-modal");
   modalSubmit.textContent = "Save";
 
   const lowerContainer = document.createElement("div");
   lowerContainer.classList.add("modal-bottom-container");
-  lowerContainer.append(modalCategorySelect, modalSubmit);
+  if (type === "task") {
+    lowerContainer.append(modalCategorySelect, modalSubmit);
+  } else {
+    lowerContainer.append(modalSubmit);
+  }
 
   modalContainer.append(modalInput, lowerContainer);
   document.querySelector("body").append(modalContainer);
+  modalInput.focus();
 
   const closeModal = () => {};
 
   modalSubmit.addEventListener("click", () => {
     const taskData = {
-      title: modalInput.value.trim(),
+      title: modalInput.textContent.trim(),
       category: modalCategorySelect.value,
     };
 
