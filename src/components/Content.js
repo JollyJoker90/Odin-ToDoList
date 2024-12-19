@@ -3,18 +3,23 @@ import TaskCard from "./TaskCard";
 
 const Content = () => {
   document.querySelector("#content").innerHTML = "";
+  const state = StateManager.getState();
   const container = document.createElement("div");
   container.classList.add("container", "project-container");
 
-  const state = StateManager.getState();
+  state.projects.forEach((project) => {
+    console.log(project);
+    const projectContainer = document.createElement("div");
 
-  const heading = document.createElement("h1");
-  heading.textContent = state.projects[0].name;
+    const heading = document.createElement("h1");
+    heading.textContent = project.name;
 
-  container.append(heading);
+    projectContainer.append(heading);
 
-  state.projects[0].getTasks().forEach((task) => {
-    container.append(TaskCard(task));
+    project.getTasks().forEach((task) => {
+      projectContainer.append(TaskCard(task));
+    });
+    container.append(projectContainer);
   });
 
   return container;
