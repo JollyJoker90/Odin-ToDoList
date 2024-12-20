@@ -103,6 +103,10 @@ main {
   padding: var(--spacer);
 }
 
+#content > .container {
+  justify-content: space-evenly;
+}
+
 #sidebar {
   background-color: #ffca58;
 }

@@ -5,11 +5,12 @@ const Content = () => {
   document.querySelector("#content").innerHTML = "";
   const state = StateManager.getState();
   const container = document.createElement("div");
-  container.classList.add("container", "project-container");
+  container.classList.add("container");
 
   state.projects.forEach((project) => {
-    console.log(project);
+    // console.log(project);
     const projectContainer = document.createElement("div");
+    projectContainer.classList.add("project-container");
 
     const heading = document.createElement("h1");
     heading.textContent = project.name;
