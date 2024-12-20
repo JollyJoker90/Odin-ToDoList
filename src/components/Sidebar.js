@@ -5,11 +5,13 @@ import Project from "../models/Project";
 
 const Sidebar = () => {
   const container = document.createElement("div");
-  container.classList.add("container", "sidebar-container");
+  container.classList.add("container", "sidebar-container", "flex-col");
 
   const sidebarTitle = document.createElement("h1");
   sidebarTitle.textContent = "ToDo's";
 
+  const btnContainer = document.createElement("div");
+  btnContainer.classList.add("container", "flex-col");
   const addTaskBtn = document.createElement("button");
   addTaskBtn.classList.add("btn");
   addTaskBtn.textContent = "Add Task";
@@ -48,7 +50,8 @@ const Sidebar = () => {
     );
   });
 
-  container.append(sidebarTitle, addTaskBtn, addProjectBtn);
+  btnContainer.append(addTaskBtn, addProjectBtn);
+  container.append(sidebarTitle, btnContainer);
 
   return container;
 };

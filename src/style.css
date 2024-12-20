@@ -2,7 +2,7 @@
   --spacer: 12px;
   --spacerX2: calc(var(--spacer) * 2);
 
-  --primary: var(--primary);
+  /* --primary: var(--primary); */
 }
 
 @font-face {
@@ -84,10 +84,19 @@ main {
   grid-template-columns: 1fr 4fr;
 }
 
-.container {
-  padding: var(--spacer);
+.flex {
   display: flex;
   gap: var(--spacer);
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacer);
+}
+
+.container {
+  padding: var(--spacer);
 }
 
 .container > h1 {
