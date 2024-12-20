@@ -50,10 +50,25 @@ const Sidebar = () => {
     );
   });
 
+  const projectContainer = document.createElement("div");
+  projectContainer.classList.add("container", "flex-col");
+
+  const state = StateManager.getState();
+  state.projects.forEach((project) => {
+    const proj = document.createElement("div");
+    proj.textContent = project.name;
+    projectContainer.append(proj);
+  });
+
   btnContainer.append(addTaskBtn, addProjectBtn);
-  container.append(sidebarTitle, btnContainer);
+  container.append(sidebarTitle, btnContainer, projectContainer);
 
   return container;
 };
 
-export default Sidebar;
+const RenderSidebar = () => {
+  document.querySelector("#sidebar").innerHTML = "";
+  document.querySelector("#sidebar").append(Sidebar());
+};
+
+export { Sidebar, RenderSidebar };

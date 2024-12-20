@@ -1,8 +1,8 @@
 import "./style.css";
 import StateManager from "./state/State";
-import Sidebar from "./components/Sidebar";
+import { RenderSidebar } from "./components/Sidebar";
 import Project from "./models/Project";
-import { Content, RenderContent } from "./components/Content";
+import { RenderContent } from "./components/Content";
 import Task from "./models/Task";
 
 const defaultProject = Project("Default");
@@ -18,10 +18,11 @@ StateManager.setState({ projects: [...state.projects] });
 // Testing end
 
 StateManager.subscribe((newState) => {
+  RenderSidebar();
   RenderContent();
 });
 
 RenderContent();
-document.querySelector("#sidebar").append(Sidebar());
+RenderSidebar();
 
 window.StateM = StateManager;
